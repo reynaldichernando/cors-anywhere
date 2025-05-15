@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CORS Anywhere - Community-Hosted Instance</title>
+    <meta
+      name="description"
+      content="A free, community-hosted CORS Anywhere proxy. Instantly add CORS headers to any request. Not affiliated with Rob Wu. No opt-in required. Rate limited. Production-ready alternative available."
+    />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://cors-anywhere.com/" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is CORS Anywhere?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "CORS Anywhere is a Node.js proxy that adds CORS headers to a proxied request, enabling browsers to access resources that would otherwise be blocked by the Same-Origin Policy."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What's the difference between this and the Heroku version?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The Herokuapp instance requires daily opt-in to use, and has limits of 50 requests per hour. This instance has no opt-in requirement, with less strict rate limits."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why is this a community / unofficial instance?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Although permission was granted by Rob to host the service, this instance is not affiliated with him. It simply runs the open-source cors-anywhere code."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I use this in production?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "This instance has speed and rate limits that is not suitable for production use. For faster proxy, either self-host CORS Anywhere or use a managed CORS proxy."
+            }
+          }
+        ]
+      }
+    </script>
+
+    <!-- Minimal, modern styling -->
+    <style>
+      :root {
+        --fg: #111827;
+        --bg: #f9fafb;
+        --accent: #2563eb;
+        --card-bg: #ffffff;
+        --border: #e5e7eb;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+        background: var(--bg);
+        color: var(--fg);
+        line-height: 1.6;
+      }
+
+      header {
+        background: var(--card-bg);
+        border-bottom: 1px solid var(--border);
+        padding: 4rem 1rem;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      header h1 {
+        margin: 0 0 0.5rem;
+        font-size: 2rem;
+      }
+
+      header p {
+        max-width: 48rem;
+        margin: 0 auto;
+      }
+
+      main {
+        max-width: 48rem;
+        padding: 2rem 1rem;
+        margin: 0 auto;
+      }
+
+      section {
+        margin-bottom: 2.5rem;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+        margin: 0 0 1rem;
+      }
+
+      code,
+      pre {
+        font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo,
+          monospace;
+        background: #f3f4f6;
+        border: 1px solid var(--border);
+        border-radius: 4px;
+      }
+
+      code {
+        padding: 0.15rem 0.35rem;
+        font-size: 0.95rem;
+      }
+
+      pre {
+        padding: 1rem;
+        overflow-x: auto;
+      }
+
+      ul.details-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        gap: 0.75rem;
+      }
+
+      ul.details-list li {
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        padding: 0.75rem 1rem;
+      }
+
+      details {
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        margin: 0.5rem 0;
+      }
+
+      details summary {
+        cursor: pointer;
+        font-weight: 600;
+        padding: 1rem;
+      }
+
+      details p {
+        padding: 0 1rem 1rem;
+        margin: 0;
+      }
+
+      footer {
+        border-top: 1px solid var(--border);
+        padding: 2rem 1rem;
+        font-size: 0.875rem;
+        color: #6b7280;
+        background: var(--card-bg);
+        text-align: center;
+      }
+
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>CORS Anywhere - Community-Hosted Instance</h1>
+      <p>
+        A community-hosted instance of the
+        <a href="https://github.com/Rob--W/cors-anywhere"
+          >open source CORS Anywhere</a
+        >
+        Node.js proxy with less restrictions. The proxy adds the required CORS
+        headers to the proxied request. Not affiliated with Rob Wu.
+      </p>
+    </header>
+
+    <main>
+      <!-- Usage -->
+      <section id="usage">
+        <h2>Usage</h2>
+        <p>
+          Prefix any URL with the proxy origin:
+          <code>https://cors-anywhere.com/&lt;url&gt;</code>
+        </p>
+        <pre>
+// Example: fetch via JavaScript
+fetch("https://cors-anywhere.com/https://api.example.com/data")
+  .then(r => r.json())
+  .then(console.log);
+</pre
+        >
+      </section>
+
+      <!-- Request Examples -->
+      <section id="examples">
+        <h2>Request Examples</h2>
+        <pre>
+// Google.com with CORS headers
+https://cors-anywhere.com/http://google.com
+
+// Same as previous
+https://cors-anywhere.com/google.com
+
+// Proxies https://google.com/
+https://cors-anywhere.com/google.com:443</pre
+        >
+      </section>
+
+      <!-- Migration -->
+      <section id="migration">
+        <h2>Moving From <code>cors-anywhere.herokuapp.com</code></h2>
+        <p>Simply drop <code>herokuapp</code> from the domain:</p>
+        <div
+          style="
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 1.5rem 0;
+          "
+        >
+          <code
+            >https://cors-anywhere.<strong>herokuapp.</strong>com/&lt;url&gt;</code
+          >
+          <span style="font-size: 2rem; color: #2563eb; align-self: center"
+            >↓</span
+          >
+          <code>https://cors-anywhere.com/&lt;url&gt;</code>
+        </div>
+      </section>
+
+      <!-- Hosted Instance Details -->
+      <section id="details">
+        <h2>About This Instance</h2>
+        <ul class="details-list">
+          <li>Free to use, no opt-in required</li>
+          <li>
+            Rate limit (per <em>website</em>): <strong>20</strong> requests /
+            minute
+          </li>
+        </ul>
+      </section>
+
+      <!-- FAQ -->
+      <section id="faq">
+        <h2>FAQ</h2>
+
+        <details open>
+          <summary>What is CORS Anywhere?</summary>
+          <p>
+            <strong>CORS Anywhere</strong> is a Node.js proxy that adds CORS
+            headers to a proxied request, enabling browsers to access resources
+            that would otherwise be blocked by the Same-Origin Policy.
+          </p>
+        </details>
+
+        <details>
+          <summary>
+            What's the difference between this and the Heroku version?
+          </summary>
+          <p>
+            The Herokuapp instance requires daily opt-in to use, and has limits
+            of 50 requests per <em>hour</em>. This instance has no opt-in
+            requirement, with less strict rate limits.
+          </p>
+        </details>
+
+        <details>
+          <summary>Why is this a community / unofficial instance?</summary>
+          <p>
+            Although permission was granted by Rob to host the service, this
+            instance is not affiliated with him. It simply runs the open-source
+            <code>cors-anywhere</code> code.
+          </p>
+        </details>
+
+        <details>
+          <summary>Can I use this in production?</summary>
+          <p>
+            This instance has speed and rate limits that is not suitable for
+            production use. For faster proxy, either self-host CORS Anywhere or
+            use a managed CORS proxy.
+          </p>
+        </details>
+      </section>
+    </main>
+
+    <footer>
+      <p>
+        CORS Anywhere was created by
+        <a href="https://robwu.nl" target="_blank" rel="noopener">Rob Wu</a> and
+        is not affiliated with this instance.
+      </p>
+      <p>
+        This CORS Anywhere instance is hosted by
+        <a href="https://corsfix.com" target="_blank" rel="noopener">Corsfix</a
+        >, a production ready CORS proxy.
+      </p>
+    </footer>
+  </body>
+</html>
